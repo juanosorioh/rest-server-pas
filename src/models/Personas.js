@@ -47,6 +47,15 @@ const UserSchema = new mongoose.Schema({
         }
     ],
     activo: {type: Boolean, default: true}
+
+    
 })
+
+UsuarioSchema.methods.toJSON = function ()  {
+    const { password, _id, ...usuario } = this.toObject();
+    usuario.uid = _id;
+
+    return usuario;
+}
 
 module.exports = User = mongoose.model('user', UserSchema)

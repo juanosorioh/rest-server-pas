@@ -35,17 +35,17 @@ ctrlPersonas.login = async (req, res) => {
 
 }
 
-ctrlPersonas.getUsers = (req, res) => {
+ctrlPersonas.getPersonas = (req, res) => {
    return res.json({
       msg: 'GET'
    });
 };
 
 
-// POST -> Crear nuevo usuario comun =>alumno
-ctrlPersonas.postUsers = async (req, res) => {
+// POST -> Crear nuevo usuario comun =>Personas
+ctrlPersonas.postPersonas = async (req, res) => {
 
-   const {nombre, apellido, dni, birthdate, telefono, password, confirmPassword, email, roles = ['alumno'],  } = req.body;
+   const {nombre, apellido, dni, birthdate, telefono, password, confirmPassword, email, roles = ['Alumno'],  } = req.body;
 
    if (password !== confirmPassword) {
       return res.status(400).json({
@@ -56,7 +56,7 @@ ctrlPersonas.postUsers = async (req, res) => {
    const passwordHashed = bcrypt.hashSync(password, 10);
 
 
-   const nuevoAlumno = new Personas({
+   const nuevoPersonas = new Personas({
       password: passwordHashed,
       email,
       roles,
@@ -70,15 +70,15 @@ ctrlPersonas.postUsers = async (req, res) => {
 
 
    try {
-      const usuarioCreado = await nuevoUsuario.save();
+      const PersonasCreado = await nuevoPersonas.save();
 
       return res.json({
-         usuarioCreado
+        PersonasCreado
       });
    } catch (error) {
       console.log(error.message);
       return res.status(400).json({
-         msg: 'Error al crear el usuario'
+         msg: 'Error al crear Personas'
       });
    }
 };
@@ -87,15 +87,11 @@ ctrlPersonas.postUsers = async (req, res) => {
 
 
 
-ctrlPersonas.putUsers = (req, res) => {
+ctrlPersonas.putPersonas = (req, res) => {
    return res.json({
       msg: 'PUT'
    });
 };
-ctrlPersonas.deleteUsers = (req, res) => {
-   return res.json({
-      msg: 'DELETE'
-   });
-};
+
 
 module.exports = ctrlPersonas;
