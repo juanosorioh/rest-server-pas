@@ -1,21 +1,21 @@
 const mongoose = require('mongoose')
 
-const UserSchema = new mongoose.Schema({
+const personasSchema = new mongoose.Schema({
     nombre:{
         type: String,
-        required: true,
+        //required: true,
     },
     apellido:{
         type: String,
-        required: true
+        //required: true
     },
     email:{
         type: String,
-        required: true
+        //required: true
     },
     password:{
         type: String,
-        required: true
+        //required: true
     },
     birthdate:{
         type: Date,
@@ -27,7 +27,7 @@ const UserSchema = new mongoose.Schema({
     },
     telefono:{
         type: String,
-        required: true
+        //required: true
     },
     Roles:[
         {
@@ -51,11 +51,11 @@ const UserSchema = new mongoose.Schema({
     
 })
 
-UsuarioSchema.methods.toJSON = function ()  {
-    const { password, _id, ...usuario } = this.toObject();
-    usuario.uid = _id;
+personasSchema.methods.toJSON = function ()  {
+    const { password, _id, ...personas } = this.toObject();
+    personas.uid = _id;
 
-    return usuario;
+    return personas;
 }
 
-module.exports = User = mongoose.model('user', UserSchema)
+module.exports = Personas = mongoose.model('personas', personasSchema)
