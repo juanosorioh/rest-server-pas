@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Rutas
 app.use('/api/users', require('./routes/users.routes'));
+//app.use('/api/personas', require('./routes/alumnos.routes'))
 
 // Archivos estáticos
 app.listen(port, () => console.log(`Servidor corriendo en http://localhost:${port}`));
